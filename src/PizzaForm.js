@@ -2,6 +2,15 @@ import React, { useState } from "react";
 import * as yup from "yup";
 import formSchema from "./FormSchema";
 import axios from "axios";
+import styled from "styled-components";
+
+const PieForm = styled.div`
+  color: solid black;
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 
 export default function PizzaForm(props) {
   const { values, update, submit } = props;
@@ -13,6 +22,7 @@ export default function PizzaForm(props) {
     Hamburger: null,
     Onions: null,
     Peppers: null,
+    BlackOlives: null,
     SpecialInstructions: null,
   });
   const [formValues, setFormValues] = useState({
@@ -22,6 +32,7 @@ export default function PizzaForm(props) {
     Hamburger: false,
     Onions: false,
     Peppers: false,
+    BlackOlives: false,
     SpecialInstructions: "",
   });
 
@@ -50,29 +61,31 @@ export default function PizzaForm(props) {
     event.preventDefault();
     const newOrder = {
       name: formValues.name,
+      size: formValues.size,
       Pepperoni: formValues.Pepperoni,
       Hamburger: formValues.Hamburger,
       Onions: formValues.Onions,
       Peppers: formValues.Peppers,
-      size: formValues.size,
+      BlackOlives: formValues.BlackOlives,
       SpecialInstructions: formValues.SpecialInstructions,
     };
     axios.post(`https://reqres.in/api/orders`, newOrder);
   };
 
   return (
-    <div>
+    <PieForm>
       <form id="pizza-form" onSubmit={onSubmit}>
         <div className="errors">
           <div>{formErrors.name}</div>
+          <div>{formErrors.size}</div>
           <div>{formErrors.Pepperoni}</div>
           <div>{formErrors.Hamburger}</div>
           <div>{formErrors.Onions}</div>
           <div>{formErrors.Peppers}</div>
-          <div>{formErrors.size}</div>
+          <div>{formErrors.BlackOlives}</div>
           <div>{formErrors.SpecialInstructions}</div>
         </div>
-        <label htmlFor="name-input">name</label>
+        <label>Name</label>
         <input
           id="name-input"
           name="name"
@@ -82,9 +95,9 @@ export default function PizzaForm(props) {
 
         <select
           id="size-dropdown"
+          name="size"
           onChange={inputChange}
           value={formValues.size}
-          name="size"
         >
           <option value="">- Select a Size -</option>
           <option value="small">Small</option>
@@ -127,6 +140,15 @@ export default function PizzaForm(props) {
             checked={formValues.Peppers}
           />
         </label>
+        <label>
+          Black Olives
+          <input
+            type="checkbox"
+            name="BlackOlives"
+            onChange={inputChange}
+            checked={formValues.BlackOlives}
+          />
+        </label>
         <input
           id="special-text"
           type="text"
@@ -138,6 +160,6 @@ export default function PizzaForm(props) {
           Order Pizza!
         </button>
       </form>
-    </div>
+    </PieForm>
   );
 }
