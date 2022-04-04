@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <Wrapper>
       Welcome! Ready to make some Pizza?!
-      <GetStarted>Click on the 'Pizza' link to get started!</GetStarted>
+      <GetStarted>Click on the 'Pizza' link to get started!!</GetStarted>
     </Wrapper>
   );
 }
