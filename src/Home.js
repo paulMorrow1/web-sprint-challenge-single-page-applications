@@ -6,9 +6,14 @@ const Wrapper = styled.div`
   background: green;
   color: white;
   font-size: 2rem;
+  padding: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 `;
 
-const Crust = styled.h2`
+const GetStarted = styled.h2`
   color: navy;
   font-size: 1.5rem;
 `;
@@ -17,7 +22,7 @@ export default function Home() {
   return (
     <Wrapper>
       Welcome! Ready to make some Pizza?!
-      <Crust>Try our award winning Thin Crust!</Crust>
+      <GetStarted>Click on the 'Pizza' link to get started!</GetStarted>
     </Wrapper>
   );
 }

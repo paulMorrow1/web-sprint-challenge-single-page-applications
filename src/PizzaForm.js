@@ -6,10 +6,25 @@ import styled from "styled-components";
 
 const PieForm = styled.div`
   color: solid black;
+  background: silver;
   font-size: 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  padding: 1rem;
+  border: 2px solid green;
+`;
+
+const OrderName = styled.label`
+  padding: 2rem 0rem;
+`;
+
+const SpecInst = styled.label`
+  padding: 2rem 0rem;
+`;
+
+const Size = styled.select`
+padding: .5rem; 0rem;
+margin: 1rem 0rem;
 `;
 
 export default function PizzaForm(props) {
@@ -73,7 +88,7 @@ export default function PizzaForm(props) {
   };
 
   return (
-    <PieForm>
+    <div>
       <form id="pizza-form" onSubmit={onSubmit}>
         <div className="errors">
           <div>{formErrors.name}</div>
@@ -85,81 +100,87 @@ export default function PizzaForm(props) {
           <div>{formErrors.BlackOlives}</div>
           <div>{formErrors.SpecialInstructions}</div>
         </div>
-        <label>Name</label>
-        <input
-          id="name-input"
-          name="name"
-          onChange={inputChange}
-          value={formValues.name}
-        />
+        <PieForm>
+          <OrderName>
+            Name
+            <input
+              id="name-input"
+              name="name"
+              onChange={inputChange}
+              value={formValues.name}
+            />
+          </OrderName>
 
-        <select
-          id="size-dropdown"
-          name="size"
-          onChange={inputChange}
-          value={formValues.size}
-        >
-          <option value="">- Select a Size -</option>
-          <option value="small">Small</option>
-          <option value="medium">Medium</option>
-          <option value="large">Large</option>
-        </select>
-        <label>
-          Pepperoni
-          <input
-            type="checkbox"
-            name="Pepperoni"
+          <Size
+            id="size-dropdown"
+            name="size"
             onChange={inputChange}
-            checked={formValues.Pepperoni}
-          />
-        </label>
-        <label>
-          Hamburger
-          <input
-            type="checkbox"
-            name="Hamburger"
-            onChange={inputChange}
-            checked={formValues.Hamburger}
-          />
-        </label>
-        <label>
-          Onions
-          <input
-            type="checkbox"
-            name="Onions"
-            onChange={inputChange}
-            checked={formValues.Onions}
-          />
-        </label>
-        <label>
-          Peppers
-          <input
-            type="checkbox"
-            name="Peppers"
-            onChange={inputChange}
-            checked={formValues.Peppers}
-          />
-        </label>
-        <label>
-          Black Olives
-          <input
-            type="checkbox"
-            name="BlackOlives"
-            onChange={inputChange}
-            checked={formValues.BlackOlives}
-          />
-        </label>
-        <input
-          id="special-text"
-          type="text"
-          name="SpecialInstructions"
-          onChange={inputChange}
-          placeholder="Special Instructions"
-        />
-        <button id="order-button" type="submit">
-          Order Pizza!
-        </button>
+            value={formValues.size}
+          >
+            <option value="">- Select a Size -</option>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+          </Size>
+          <label>
+            Pepperoni
+            <input
+              type="checkbox"
+              name="Pepperoni"
+              onChange={inputChange}
+              checked={formValues.Pepperoni}
+            />
+          </label>
+          <label>
+            Hamburger
+            <input
+              type="checkbox"
+              name="Hamburger"
+              onChange={inputChange}
+              checked={formValues.Hamburger}
+            />
+          </label>
+          <label>
+            Onions
+            <input
+              type="checkbox"
+              name="Onions"
+              onChange={inputChange}
+              checked={formValues.Onions}
+            />
+          </label>
+          <label>
+            Peppers
+            <input
+              type="checkbox"
+              name="Peppers"
+              onChange={inputChange}
+              checked={formValues.Peppers}
+            />
+          </label>
+          <label>
+            Black Olives
+            <input
+              type="checkbox"
+              name="BlackOlives"
+              onChange={inputChange}
+              checked={formValues.BlackOlives}
+            />
+          </label>
+          <SpecInst>
+            <input
+              id="special-text"
+              type="text"
+              name="SpecialInstructions"
+              onChange={inputChange}
+              placeholder="Special Instructions"
+            />
+          </SpecInst>
+          <button id="order-button" type="submit">
+            Order Pizza!
+          </button>
+        </PieForm>
       </form>
-    </PieForm>
+    </div>
   );
 }

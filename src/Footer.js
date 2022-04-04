@@ -4,7 +4,10 @@ import styled from "styled-components";
 const Foot = styled.div`
   background: yellow;
   color: red;
-  font-size: 1.5rem;
+  font-size: 4.5rem;
+  padding: 3rem;
+  display: flex;
+  justify-content: left;
 `;
 
 export default function Footer(props) {
